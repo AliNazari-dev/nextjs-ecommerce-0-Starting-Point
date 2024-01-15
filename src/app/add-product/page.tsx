@@ -60,9 +60,7 @@ const AddProductPage = () => {
           placeholder="description"
           className="textarea-bordered textarea mb-2 w-full"
         />
-        <SubmitButton className="btn-block">
-          Add Product
-        </SubmitButton>
+        <SubmitButton className="btn-block ">Add Product</SubmitButton>
       </form>
     </div>
   );
