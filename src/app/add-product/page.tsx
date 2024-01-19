@@ -1,6 +1,8 @@
 import SubmitButton from "@/components/SubmitButton";
 import { prisma } from "@/lib/db/prisma";
+import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
+import { authOption } from "../api/auth/[...nextauth]/route";
 
 export const metadata = {
   title: "Add product - Alimazon",
@@ -29,7 +31,13 @@ async function addProduct(formData: FormData) {
   redirect("/");
 }
 
-const AddProductPage = () => {
+const AddProductPage = async () => {
+  const session = await getServerSession(authOption);
+
+  if (!session) {
+    redirect("/api/auth/signin?callbackUrl=/add-product");
+  }
+
   return (
     <div>
       <h1 className="mb-3 text-lg font-bold">AddProductPage</h1>
